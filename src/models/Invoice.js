@@ -139,6 +139,9 @@ invoiceSchema.index({ clientEmail: 1 });
 invoiceSchema.set('toJSON', {
   transform: function(doc, ret) {
     ret.subtotal = ret.subtotal.toString();
+        ret.id = ret._id.toString();
+      delete ret._id; // Optional: remove _id if you want
+      delete ret.__v; 
     ret.taxRate = ret.taxRate.toString();
     ret.taxAmount = ret.taxAmount.toString();
     ret.total = ret.total.toString();
